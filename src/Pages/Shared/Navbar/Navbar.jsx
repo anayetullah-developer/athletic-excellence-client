@@ -1,4 +1,11 @@
+import { useContext } from "react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { AuthContext } from "../../../Providers/AuthProviders";
+
 const Navbar = () => {
+    const {user, loading} = useContext(AuthContext);
+    console.log(user);
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -68,9 +75,17 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+        
         <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="flex gap-3">
+            <MdDarkMode/>
+            <MdLightMode/>
         </div>
+          <a className="btn md:mx-4">Button</a>          
+        </div>
+       
+        <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
+        
       </div>
     </div>
   );
