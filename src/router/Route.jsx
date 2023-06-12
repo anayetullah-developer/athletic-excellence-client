@@ -2,9 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main";
 import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home/Home";
-import Classes from "../Pages/Classes/Classes";
 import Dashboard from "../Layouts/Dashboard";
 import PopularInstructors from "../Pages/Home/PopularInstructors/PopularInstructors";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
+import PopularClasses from "../Pages/Home/PopularClasses/PopularClasses";
 
 
 export const router = createBrowserRouter([
@@ -17,13 +19,25 @@ export const router = createBrowserRouter([
                 path: "/",
                 element: <Home/>
             },
+
             {
-                path: "/classes",
-                element: <Classes/>
+                path: "popular-classes",
+                element: <PopularClasses/>
             },
+
             {
-                path: "/instructors",
+                path: "popular-instructors",
                 element: <PopularInstructors/>
+            },
+
+            {
+                path: "login",
+                element: <Login/>
+            },
+
+            {
+                path: "register",
+                element: <Register/>
             },
         ]
     },
