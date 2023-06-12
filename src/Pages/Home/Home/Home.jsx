@@ -1,13 +1,14 @@
 import Extra from "../Extra/Extra";
 import Hero from "../Hero/Hero";
-import PopularClasses from "../PopurlarClasses/PopularClasses";
+import PopularInstructors from "../PopularInstructors/PopularInstructors";
+import PopularClasses from "../PopularClasses/PopularClasses";
 
 const Home = () => {
     return (
         <div>
             <Hero/>
             <PopularClasses/>
-            <PopularClasses/>
+            <PopularInstructors/>
             <Extra/>
         </div>
     );
