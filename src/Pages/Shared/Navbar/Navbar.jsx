@@ -2,6 +2,7 @@ import { useContext} from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
@@ -57,23 +58,16 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <a>Item 3</a>
+              <NavLink to="classes">Classes</NavLink>
+            </li>
+            <li>
+              <NavLink to="instructors">Instructors</NavLink>
+            </li>
+            <li>
+              <NavLink to="dashboard">Dashboard</NavLink>
             </li>
           </ul>
         </div>
