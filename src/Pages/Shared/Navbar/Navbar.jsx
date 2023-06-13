@@ -1,14 +1,16 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import { ThemeContext } from "../../../Providers/ThemeProvider";
 
 const Navbar = () => {
-    const {user, loading} = useContext(AuthContext);
-    console.log(user);
-
+  const { user } = useContext(AuthContext);
+  const {toggleTheme, isDarkTheme} = useContext(ThemeContext);
+  console.log(isDarkTheme);
+  console.log(user)
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -75,17 +77,25 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        
+
         <div className="navbar-end">
-        <div className="flex gap-3">
-            <MdDarkMode/>
-            <MdLightMode/>
+          <div className="flex gap-3">
+            {isDarkTheme ? (
+              <MdLightMode
+                className="text-3xl text-white"
+                onClick={toggleTheme}
+              />
+            ) : (
+              <MdDarkMode
+                className="text-3xl text-black"
+                onClick={toggleTheme}
+              />
+            )}
+          </div>
+          <a className="btn md:mx-4">Button</a>
         </div>
-          <a className="btn md:mx-4">Button</a>          
-        </div>
-       
+
         <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
-        
       </div>
     </div>
   );
