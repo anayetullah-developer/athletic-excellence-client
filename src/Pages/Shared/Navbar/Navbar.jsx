@@ -87,9 +87,10 @@ const Navbar = () => {
             )}
           </div>
           <a className="btn md:mx-4">Button</a>
+          <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
         </div>
 
-        <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
+       
       </div>
     </div>
   );

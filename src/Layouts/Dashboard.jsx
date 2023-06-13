@@ -1,3 +1,7 @@
+import { Outlet } from "react-router-dom";
+import Sidebar from "../Pages/Components/DashboardComponents/Sidebar";
+import DashboardNavbar from "../Pages/Components/DashboardComponents/DashboardNavbar";
+
 const Dashboard = () => {
   return (
     <div>
@@ -23,58 +27,15 @@ const Dashboard = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">Navbar Title</div>
+            <div className="flex-1 px-2 mx-2">Dashboard</div>
             <div className="flex-none hidden lg:block">
-              <ul className="menu menu-horizontal">
-                {/* Navbar menu content here */}
-                <li>
-                  <a>Navbar Item 1</a>
-                </li>
-                <li>
-                  <a>Navbar Item 2</a>
-                </li>
-              </ul>
+              <DashboardNavbar/>
             </div>
           </div>
           {/* Page content here */}
-          Content
+          <Outlet />
         </div>
-        <div className="drawer-side">
-          <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-60 h-full bg-base-200">
-            {/* Sidebar content here */}
-            <li>
-              <a>Manage Users</a>
-            </li>
-            <li>
-              <a>Manage Instructors</a>
-            </li>
-            <li>
-              <a>Manage Orders</a>
-            </li>
-          </ul>
-          <ul className="menu p-4 w-60 h-full bg-base-200">
-            {/* Sidebar content here */}
-            <li>
-              <a>My Selected Classes</a>
-            </li>
-            <li>
-              <a>My Enrolled Classes</a>
-            </li>
-            <li>
-              <a>Payment History</a>
-            </li>
-          </ul>
-          <ul className="menu p-4 w-60 h-full bg-base-200">
-            {/* Sidebar content here */}
-            <li>
-              <a>My Classes</a>
-            </li>
-            <li>
-              <a>Add a Class</a>
-            </li>
-          </ul>
-        </div>
+        <Sidebar />
       </div>
     </div>
   );
