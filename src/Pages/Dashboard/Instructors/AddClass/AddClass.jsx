@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../Providers/AuthProviders";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const AddClass = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user} = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -11,11 +13,12 @@ const AddClass = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    fetch("http://localhost:5000/instructor/addClass", {
-        method : "POST",
-        headers : 
+  const onSubmit = async (data) => {
+    // reset();
+    const response = await axiosSecure.post("/instructor/addClass", {
+       ...data
     })
+    console.log(response);
   };
   return (
     <div className="w-3/5 md:mx-auto py-10">
@@ -109,7 +112,7 @@ const AddClass = () => {
         </div>
 
         <div className="form-control mt-6">
-          <input className="btn btn-primary" type="submit" value="Sign Up" />
+          <input className="btn btn-primary" type="submit" value="Add Class" />
         </div>
       </form>
     </div>

@@ -12,6 +12,21 @@ const Sidebar = () => {
         <li>
           <Link to="/dashboard/instructors/my-classes">My Class</Link>
         </li>
+        <li>
+          <Link to="/dashboard/student/selected-classes">Selected Classes</Link>
+        </li>
+        <li>
+          <Link to="/dashboard/student/enrolled-classes">Enrolled Class</Link>
+        </li>
+        <li>
+          <Link to="/dashboard/student/payment-history">Payment History</Link>
+        </li>
+        <li>
+          <Link to="/dashboard/instructors/add-class">Manage Classes</Link>
+        </li>
+        <li>
+          <Link to="/dashboard/instructors/my-classes">Manage Users</Link>
+        </li>
       </ul>
     </div>
   );

@@ -14,8 +14,7 @@ import AddClass from "../Pages/Dashboard/Instructors/AddClass/AddClass";
 import MyClasses from "../Pages/Dashboard/Instructors/MyClasses/MyClasses";
 import ManageUsers from "../Pages/Dashboard/Admins/ManageUsers/ManageUsers";
 import MangeClasses from "../Pages/Dashboard/Admins/ManageClasses/MangeClasses";
-
-
+import UpdateClass from "../Pages/Dashboard/Instructors/UpdateClass/UpdateClass";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -59,11 +58,11 @@ export const router = createBrowserRouter([
                 element: <EnrolledClasses/>
             },
             {
-                path: "students/enrolled-classes",
+                path: "student/enrolled-classes",
                 element: <SelectedClasses/>
             },
             {
-                path: "students/payment-history",
+                path: "student/payment-history",
                 element: <PaymentHistory/>
             },
             {
@@ -76,6 +75,13 @@ export const router = createBrowserRouter([
             },
 
             {
+                path: "instructor/myClasses/:id",
+                element: <UpdateClass />,
+                loader: ({ params }) =>
+                  fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
+              },
+
+            {
                 path: "admin/manage-users",
                 element: <ManageUsers/>
             },
@@ -83,6 +89,8 @@ export const router = createBrowserRouter([
                 path: "admin/manage-classes",
                 element: <MangeClasses/>
             },
+
+            
         ]
     }
 ])
