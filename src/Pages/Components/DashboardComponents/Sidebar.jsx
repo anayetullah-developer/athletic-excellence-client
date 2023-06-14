@@ -22,10 +22,10 @@ const Sidebar = () => {
           <Link to="/dashboard/student/payment-history">Payment History</Link>
         </li>
         <li>
-          <Link to="/dashboard/instructors/add-class">Manage Classes</Link>
+          <Link to="/dashboard/admin/manage-classes">Manage Classes</Link>
         </li>
         <li>
-          <Link to="/dashboard/instructors/my-classes">Manage Users</Link>
+          <Link to="/dashboard/admin/manage-users">Manage Users</Link>
         </li>
       </ul>
     </div>

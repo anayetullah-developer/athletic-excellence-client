@@ -54,11 +54,11 @@ export const router = createBrowserRouter([
         errorElement: <Error/>,
         children: [
             {
-                path: "students/selected-classes",
+                path: "student/enrolled-classes",
                 element: <EnrolledClasses/>
             },
             {
-                path: "student/enrolled-classes",
+                path: "student/selected-classes",
                 element: <SelectedClasses/>
             },
             {

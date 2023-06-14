@@ -13,7 +13,6 @@ const useClasses = () => {
         queryFn: async () => {
             const response = await axiosSecure.get(`/instructor/myClasses`);
             return response.data;
-            
         },
 
     
