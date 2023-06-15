@@ -9,9 +9,8 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const { logoutUser, loading, user } = useContext(AuthContext); 
-  const navigate = useNavigate(); 
-
+  // const { logoutUser, loading, user } = useContext(AuthContext); 
+ 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem('access-token');
@@ -26,13 +25,13 @@ const useAxiosSecure = () => {
       async (error) => {
         if (error.response && (error.response.status === 401 || error.response.status === 403)) {
             console.log(error)
-            await logoutUser();
-            navigate('/login');
+            // await logoutUser();
+            // navigate('/login');
           }
         return Promise.reject(error);
       }
     );
-  }, [logoutUser, navigate, loading, user]);
+  }, []);
 
   return [axiosSecure];
 };
