@@ -15,82 +15,87 @@ import MyClasses from "../Pages/Dashboard/Instructors/MyClasses/MyClasses";
 import ManageUsers from "../Pages/Dashboard/Admins/ManageUsers/ManageUsers";
 import MangeClasses from "../Pages/Dashboard/Admins/ManageClasses/MangeClasses";
 import UpdateClass from "../Pages/Dashboard/Instructors/UpdateClass/UpdateClass";
+import Feedback from "../Pages/Dashboard/Admins/Feedback/Feedback";
 export const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Main />,
+    errorElement: <Error />,
+    children: [
+      {
         path: "/",
-        element: <Main/>,
-        errorElement: <Error/>,
-        children: [
-            {
-                path: "/",
-                element: <Home/>
-            },
+        element: <Home />,
+      },
 
-            {
-                path: "classes",
-                element: <Classes/>
-            },
+      {
+        path: "classes",
+        element: <Classes />,
+      },
 
-            {
-                path: "instructors",
-                element: <Instructors/>
-            },
+      {
+        path: "instructors",
+        element: <Instructors />,
+      },
 
-            {
-                path: "login",
-                element: <Login/>
-            },
+      {
+        path: "login",
+        element: <Login />,
+      },
 
-            {
-                path: "register",
-                element: <Register/>
-            },
-        ]
-    },
+      {
+        path: "register",
+        element: <Register />,
+      },
+    ],
+  },
 
-    {
-        path: "dashboard",
-        element: <Dashboard/>,
-        errorElement: <Error/>,
-        children: [
-            {
-                path: "student/enrolled-classes",
-                element: <EnrolledClasses/>
-            },
-            {
-                path: "student/selected-classes",
-                element: <SelectedClasses/>
-            },
-            {
-                path: "student/payment-history",
-                element: <PaymentHistory/>
-            },
-            {
-                path: "instructors/add-class",
-                element: <AddClass/>
-            },
-            {
-                path: "instructors/my-classes",
-                element: <MyClasses/>
-            },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "student/enrolled-classes",
+        element: <EnrolledClasses />,
+      },
+      {
+        path: "student/selected-classes",
+        element: <SelectedClasses />,
+      },
+      {
+        path: "student/payment-history",
+        element: <PaymentHistory />,
+      },
+      {
+        path: "instructors/add-class",
+        element: <AddClass />,
+      },
+      {
+        path: "instructors/my-classes",
+        element: <MyClasses />,
+      },
 
-            {
-                path: "instructor/myClasses/:id",
-                element: <UpdateClass />,
-                loader: ({ params }) =>
-                  fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
-              },
+      {
+        path: "instructor/myClasses/:id",
+        element: <UpdateClass />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
+      },
 
-            {
-                path: "admin/manage-users",
-                element: <ManageUsers/>
-            },
-            {
-                path: "admin/manage-classes",
-                element: <MangeClasses/>
-            },
-
-            
-        ]
-    }
-])
+      {
+        path: "admin/manage-users",
+        element: <ManageUsers />,
+      },
+      {
+        path: "admin/manage-classes",
+        element: <MangeClasses />,
+      },
+      {
+        path: "admin/manage-users/feedback/:id",
+        element: <Feedback />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
+      },
+    ],
+  },
+]);

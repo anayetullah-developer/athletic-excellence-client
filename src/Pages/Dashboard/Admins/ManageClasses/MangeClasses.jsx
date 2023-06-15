@@ -1,7 +1,27 @@
+import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useClasses from "../../../../Hooks/useClasses";
 
 const MangeClasses = () => {
-    const [, myClasses] = useClasses();
+  const [axiosSecure] = useAxiosSecure();
+
+    const [refetch, myClasses] = useClasses();
+    const handleApproveStatus = (id) => {
+      axiosSecure.patch(`/classes/approved/${id}`)
+      .then(response => {
+          if(response.data.modifiedCount) {
+              refetch();
+          }
+      })
+    } 
+    const handleDenyStatus = (id) => {
+      axiosSecure.patch(`/classes/denied/${id}`)
+      .then(response => {
+          if(response.data.modifiedCount) {
+              refetch();
+          }
+      })
+    } 
     return (
         <div>
            <div className="flex gap-3 justify-center mt-5 items-center font-semibold uppercase text-2xl">
@@ -34,13 +54,25 @@ const MangeClasses = () => {
                   <td>{myClass.instructorName}</td>
                   <td>{myClass.email}</td>
                   <td>{myClass.price}</td>
-                  <td>pending</td>
+                  <td>{myClass.status === "approved" ? "Approved" : myClass.status === "denied" ? "Denied" : "Pending"}</td>
                   <td>{myClass.seats}</td>
                   <td>Admin will provide it</td>
                   <td>
-                    <button className="btn btn-xs">Approve</button>
-                    <button className="btn btn-xs mt-2">Deny</button>
-                    <button className="btn btn-xs mt-2">Feedback</button>
+                  <button
+                      disabled = {myClass.status === "approved" ? "disabled" : ""}
+                      className="btn btn-primary btn-xs mr-2"
+                      onClick={() => handleApproveStatus(myClass._id)}
+                    >
+                     Approve
+                    </button>
+                    <button
+                      disabled = {myClass.status === "denied" ? "disabled" : ""}
+                      className="btn btn-primary btn-xs mr-2"
+                      onClick={() => handleDenyStatus(myClass._id)}
+                    >
+                     Deny
+                    </button>
+                    <Link to={`/dashboard/admin/manage-users/feedback/${myClass._id}`}><button className="btn btn-xs btn-primary mt-2">Feedback</button></Link>
                 </td>
                 </tr>
               );

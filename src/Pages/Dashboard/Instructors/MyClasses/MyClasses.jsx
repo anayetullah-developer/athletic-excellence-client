@@ -4,6 +4,7 @@ import useClasses from "../../../../Hooks/useClasses";
 
 const MyClasses = () => {
     const [, myClasses] = useClasses();
+    console.log(myClasses);
     
   return (
     <div>
@@ -37,9 +38,9 @@ const MyClasses = () => {
                   <td>{myClass.instructorName}</td>
                   <td>{myClass.email}</td>
                   <td>{myClass.price}</td>
-                  <td>pending</td>
+                  <td>{myClass.status ? myClass.status : "Pending"}</td>
                   <td>{myClass.seats}</td>
-                  <td>Admin will provide it</td>
+                  <td>{myClass.feedback ? myClass.feedback : "No feedback"}</td>
                   <td><Link to={`/dashboard/instructor/myClasses/${myClass._id}`}><button className="btn">Update</button></Link></td>
                 </tr>
               );

@@ -7,7 +7,6 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 const UpdateClass = () => {
     const updateClassInfo = useLoaderData();
     const {name, photoURL, instructorName, price, email, seats, _id} = updateClassInfo;
-    console.log(updateClassInfo);
     const [axiosSecure] = useAxiosSecure();
 
     const {
