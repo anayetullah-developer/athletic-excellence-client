@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import useTitle from "../../Hooks/useTitle";
-import { AuthContext } from "../../Providers/AuthProviders";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProviders";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   useTitle("Register");
+
+  const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
@@ -25,12 +28,23 @@ const Register = () => {
     if (data.password1 !== data.password2) {
       setNotMatched("Password did not match");
     } else {
-      reset();
-      registerUser(data.email, data.password)
+      registerUser(data.email, data.password1)
         .then(() => {
+          reset();
           updateUser(data.name, data.photoURL)
             .then(() => {})
             .catch(() => {});
+
+          axiosSecure
+            .post("/users", {
+              name: data.name,
+              email: data.email,
+              photoURL: data.photoURL,
+            }).then((response) => {
+              if (response.data.insertedId > 0) {
+                console.log("Ok");
+              }
+            });
 
           logoutUser()
             .then(() => {
@@ -42,7 +56,9 @@ const Register = () => {
 
           navigate("/login");
         })
-        .catch(() => {});
+        .catch((error) => {
+          console.log(error.message);
+        });
     }
   };
 

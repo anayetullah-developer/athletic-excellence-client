@@ -4,10 +4,12 @@ import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
   // Variables
   useTitle("Login");
+  const [axiosSecure] = useAxiosSecure();
   const { loginUser, loginWithGoogle } = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [loginError, setLoginError] = useState("");
@@ -28,6 +30,11 @@ const Login = () => {
     reset();
     loginUser(data.email, data.password)
       .then(() => {
+        axiosSecure.get("/users", {
+          name: data.name,
+          email: data.email,
+          photoURL: data.photoURL,
+        });
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -40,8 +47,14 @@ const Login = () => {
   //Google sign in
   const handleGoogleSignIn = () => {
     loginWithGoogle()
-      .then(() => {
-        navigate(from, { replace: true });
+      .then((data) => {
+        console.log(data.user);
+        axiosSecure.post("/users", {
+          name: data.user.displayName,
+          email: data.user.email,
+          photoURL: data.user.photoURL,
+        });
+        // navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -63,7 +76,6 @@ const Login = () => {
     <div className="card card-side bg-base-100 shadow-xl md:w-4/5 md:mx-auto">
       <div className="w-2/5 p-5">
         <form onSubmit={handleSubmit(onSubmit)}>
-          
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
