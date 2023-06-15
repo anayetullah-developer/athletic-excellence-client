@@ -7,7 +7,7 @@ const useInstructor = () => {
     const {user, loading} = useContext(AuthContext); 
     const [axiosSecure] = useAxiosSecure();
     const { refetch, isLoading: isInstructorLoading, data: isInstructor = [] } = useQuery({
-        queryKey: ['isInstructor', user?.email],
+        queryKey: ['instructor', user?.email],
         enabled: !loading,
         queryFn:  async () => {
             const response =  await axiosSecure(`/users/instructor/${user?.email}`);

@@ -16,6 +16,8 @@ import ManageUsers from "../Pages/Dashboard/Admins/ManageUsers/ManageUsers";
 import MangeClasses from "../Pages/Dashboard/Admins/ManageClasses/MangeClasses";
 import UpdateClass from "../Pages/Dashboard/Instructors/UpdateClass/UpdateClass";
 import Feedback from "../Pages/Dashboard/Admins/Feedback/Feedback";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -68,31 +70,31 @@ export const router = createBrowserRouter([
       },
       {
         path: "instructors/add-class",
-        element: <AddClass />,
+        element: <InstructorRoute><AddClass /></InstructorRoute>,
       },
       {
         path: "instructors/my-classes",
-        element: <MyClasses />,
+        element: <InstructorRoute><MyClasses /></InstructorRoute>,
       },
 
       {
         path: "instructor/myClasses/:id",
-        element: <UpdateClass />,
+        element: <InstructorRoute><UpdateClass /></InstructorRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
       },
 
       {
         path: "admin/manage-users",
-        element: <ManageUsers />,
+        element: <AdminRoute><ManageUsers /></AdminRoute>,
       },
       {
         path: "admin/manage-classes",
-        element: <MangeClasses />,
+        element: <AdminRoute><MangeClasses /></AdminRoute>,
       },
       {
         path: "admin/manage-users/feedback/:id",
-        element: <Feedback />,
+        element: <AdminRoute><Feedback /></AdminRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
       },

@@ -54,7 +54,7 @@ const Login = () => {
           email: data.user.email,
           photoURL: data.user.photoURL,
         });
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;

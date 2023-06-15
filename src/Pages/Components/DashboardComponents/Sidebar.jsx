@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import useAdmin from "../../../Hooks/useAdmin";
+import useInstructor from "../../../Hooks/useInstructor";
 
 const Sidebar = () => {
 const [, , isAdmin] = useAdmin();
+const [, , isInstructor] = useInstructor();
+
 console.log(isAdmin);
   return (
     <div className="drawer-side">
@@ -42,8 +45,8 @@ console.log(isAdmin);
           <Link to="/dashboard/admin/manage-users">Manage Users</Link>
         </li>
       </ul>
-      :
-      <>
+
+      : isInstructor ?
         <ul className="menu p-4 w-60 h-full bg-base-200">
         
         <li>
@@ -53,6 +56,8 @@ console.log(isAdmin);
           <Link to="/dashboard/instructors/my-classes">My Class</Link>
         </li>
       </ul>
+
+      :
 
       <ul className="menu p-4 w-60 h-full bg-base-200">
         
@@ -66,7 +71,6 @@ console.log(isAdmin);
           <Link to="/dashboard/student/payment-history">Payment History</Link>
         </li>
       </ul>
-      </>
       }
       
     </div>
