@@ -11,7 +11,7 @@ const Navbar = () => {
   console.log(user)
   return (
     <div>
-      <div className="navbar">
+      <div className="navbar border-[#EE4672] border-b-2">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -53,10 +53,10 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="text-2xl font-extrabold">Athletic Excellence School</a>
+          <a className="text-3xl font-extrabold uppercase">Athletic Excellence </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+        <div className="navbar-center hidden lg:flex md:justify-end">
+          <ul className="menu menu-horizontal  px-1 text-lg text-[#CDFF00]">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
