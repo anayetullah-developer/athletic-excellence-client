@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <>
+    <div className="mt-16">
       <div className="footer p-10 bg-black justify-between">
-        <p className="text-white text-center">
+        <p className="text-white text-center leading-6">
           Nike camps are operated by CMT Learning Ltd in the UK. Nike and the
           Swoosh design are registered trademarks of Nike, Inc. and its
           affiliates and are used under license. Nike is the title sponsor of
@@ -51,7 +51,7 @@ const Footer = () => {
     </div>
   </div>
 </footer>
-    </>
+    </div>
   );
 };
 

@@ -2,16 +2,29 @@ import { useContext} from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
   const {toggleTheme, isDarkTheme} = useContext(ThemeContext);
-  console.log(isDarkTheme);
-  console.log(user)
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logoutUser()
+            .then(() => {
+              // Sign-out successful.
+            })
+            .catch(() => {
+              // An error happened.
+            });
+
+          navigate('/')
+
+  }
+  
   return (
     <div>
-      <div className="navbar border-[#EE4672] border-b-2">
+      <div className={`navbar border-[#EE4672] border-b-2 pb-8`}>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -30,33 +43,11 @@ const Navbar = () => {
                 />
               </svg>
             </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
           </div>
-          <a className="text-3xl font-extrabold uppercase">Athletic Excellence </a>
+          <a className="md:text-3xl font-extrabold uppercase">Athletic Excellence </a>
         </div>
         <div className="navbar-center hidden lg:flex md:justify-end">
-          <ul className="menu menu-horizontal  px-1 text-lg text-[#CDFF00]">
+          <ul className={`menu menu-horizontal  px-1 text-lg ${!isDarkTheme ? `text-black` : `text-[#CDFF00]`}`}>
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -86,7 +77,12 @@ const Navbar = () => {
               />
             )}
           </div>
-          <a className="btn md:mx-4">Button</a>
+         {
+          user ?  <Link to="/login" className=" mx-4 btn md:btn-md sm: btn-sm" onClick={handleLogOut}>Logout</Link> :
+          <Link to="/login" className=" mx-4 btn md:btn-md sm: btn-sm">Login</Link> 
+  
+          
+         }
           <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
         </div>
 

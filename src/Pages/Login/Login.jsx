@@ -73,8 +73,8 @@ const Login = () => {
   };
 
   return (
-    <div className="card card-side bg-base-100 shadow-xl md:w-4/5 md:mx-auto">
-      <div className="w-2/5 p-5">
+    <div className="card  g-base-100 shadow-xl md:w-4/5 md:mx-auto">
+      <div className="md:w-3/5 sm:w-full mx-auto sm:p-2 md:p-5">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
             <label className="label">
@@ -143,13 +143,6 @@ const Login = () => {
             Do not have an account <Link to="/register">Register</Link>
           </small>
         </p>
-      </div>
-      <div className="card-body w-3/5">
-        <h2 className="card-title">New movie is released!</h2>
-        <p>Click the button to watch on Jetflix app.</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Watch</button>
-        </div>
       </div>
     </div>
   );

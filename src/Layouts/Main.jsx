@@ -13,15 +13,11 @@ const Main = () => {
   
   return (
     <div>
-      {loading ? (
-        <p className="font-semibold">Loading</p>
-      ) : (
         <div className= {isDarkTheme? "bg-[#1D232A] text-[#FBFBFE]" : "bg-white text-black"}>
           <Navbar />
           <Outlet />
           <Footer />
         </div>
-      )} 
     </div>
   );
 };

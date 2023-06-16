@@ -1,7 +1,7 @@
-import Extra from "../Extra/Extra";
 import Hero from "../Hero/Hero";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
 import PopularClasses from "../PopularClasses/PopularClasses";
+import Venue from "../Venue/venue";
 
 const Home = () => {
     return (
@@ -9,7 +9,7 @@ const Home = () => {
             <Hero/>
             <PopularClasses/>
             <PopularInstructors/>
-            <Extra/>
+            <Venue/>
         </div>
     );
 };
