@@ -1,14 +1,14 @@
-import useClasses from "../../Hooks/useClasses";
+import useAllClasses from "../../Hooks/useAllClasses";
 import ClassCard from "../Components/UIComponents/ClassCard";
 
 const Classes = () => {
-  const [, myClasses] = useClasses();
-  console.log(myClasses);
+  const [, allClasses] = useAllClasses();
+  console.log(allClasses);
   return (
     <div>
       <div className="grid grid-cols-3 gap-4">
-        {myClasses.map((myClass) => (
-          <ClassCard key={myClass._id} myClass={myClass} />
+        {allClasses.map((singleClass) => (
+          <ClassCard key={singleClass._id} singleClass={singleClass} />
         ))}
       </div>
     </div>

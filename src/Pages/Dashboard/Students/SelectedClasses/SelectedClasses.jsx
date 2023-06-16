@@ -2,6 +2,7 @@ import { useContext } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../../Providers/AuthProviders";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const SelectedClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -62,7 +63,7 @@ const SelectedClasses = () => {
                     <button className="btn mr-3" onClick={() => handleDelete(selectedClass._id)}>
                       Delete
                     </button>
-                    <button className="btn">Enroll</button>
+                    <Link to={`/dashboard/student/payment/${selectedClass._id}`}><button className="btn">Enroll</button></Link>
                   </td>
                 </tr>
               );

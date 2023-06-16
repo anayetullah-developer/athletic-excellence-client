@@ -18,86 +18,102 @@ import UpdateClass from "../Pages/Dashboard/Instructors/UpdateClass/UpdateClass"
 import Feedback from "../Pages/Dashboard/Admins/Feedback/Feedback";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
+import Payment from "../Pages/Dashboard/Payment/Payment";
+// import useAxiosSecure from "../Hooks/useAxiosSecure";
+// const Route = () => {
+    // const [axiosSecure] = useAxiosSecure();
+   export const router = createBrowserRouter([
+        {
+          path: "/",
+          element: <Main />,
+          errorElement: <Error />,
+          children: [
+            {
+              path: "/",
+              element: <Home />,
+            },
+      
+            {
+              path: "classes",
+              element: <Classes />,
+            },
+      
+            {
+              path: "instructors",
+              element: <Instructors />,
+            },
+      
+            {
+              path: "login",
+              element: <Login />,
+            },
+      
+            {
+              path: "register",
+              element: <Register />,
+            },
+          ],
+        },
+      
+        {
+          path: "dashboard",
+          element: <Dashboard />,
+          errorElement: <Error />,
+          children: [
+            {
+              path: "student/enrolled-classes",
+              element: <EnrolledClasses />,
+            },
+            {
+              path: "student/selected-classes",
+              element: <SelectedClasses />,
+            },
+            {
+              path: "student/payment-history",
+              element: <PaymentHistory />,
+            },
+            {
+              path: "student/payment/:id",
+              element: <Payment/>,
+              loader: ({ params }) =>
+                fetch(`http://localhost:5000/student/payment/${params.id}`),
+            },
+            
+            {
+              path: "instructors/add-class",
+              element: <InstructorRoute><AddClass /></InstructorRoute>,
+            },
+            {
+              path: "instructors/my-classes",
+              element: <InstructorRoute><MyClasses /></InstructorRoute>,
+            },
+      
+            {
+              path: "instructor/myClasses/:id",
+              element: <InstructorRoute><UpdateClass /></InstructorRoute>,
+              loader: ({ params }) =>
+              fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
+            },
+      
+            {
+              path: "admin/manage-users",
+              element: <AdminRoute><ManageUsers /></AdminRoute>,
+            },
+            {
+              path: "admin/manage-classes",
+              element: <AdminRoute><MangeClasses /></AdminRoute>,
+            },
+            {
+              path: "admin/manage-users/feedback/:id",
+              element: <AdminRoute><Feedback /></AdminRoute>,
+              loader: ({ params }) =>
+                fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
+            },
+          ],
+        },
+      ]);
 
-      {
-        path: "classes",
-        element: <Classes />,
-      },
+      // return router;
+// };
 
-      {
-        path: "instructors",
-        element: <Instructors />,
-      },
-
-      {
-        path: "login",
-        element: <Login />,
-      },
-
-      {
-        path: "register",
-        element: <Register />,
-      },
-    ],
-  },
-
-  {
-    path: "dashboard",
-    element: <Dashboard />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "student/enrolled-classes",
-        element: <EnrolledClasses />,
-      },
-      {
-        path: "student/selected-classes",
-        element: <SelectedClasses />,
-      },
-      {
-        path: "student/payment-history",
-        element: <PaymentHistory />,
-      },
-      {
-        path: "instructors/add-class",
-        element: <InstructorRoute><AddClass /></InstructorRoute>,
-      },
-      {
-        path: "instructors/my-classes",
-        element: <InstructorRoute><MyClasses /></InstructorRoute>,
-      },
-
-      {
-        path: "instructor/myClasses/:id",
-        element: <InstructorRoute><UpdateClass /></InstructorRoute>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
-      },
-
-      {
-        path: "admin/manage-users",
-        element: <AdminRoute><ManageUsers /></AdminRoute>,
-      },
-      {
-        path: "admin/manage-classes",
-        element: <AdminRoute><MangeClasses /></AdminRoute>,
-      },
-      {
-        path: "admin/manage-users/feedback/:id",
-        element: <AdminRoute><Feedback /></AdminRoute>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
-      },
-    ],
-  },
-]);
+// export default Route;

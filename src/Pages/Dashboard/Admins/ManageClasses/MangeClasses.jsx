@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import useClasses from "../../../../Hooks/useClasses";
+import useAllClasses from "../../../../Hooks/useAllClasses";
 
 const MangeClasses = () => {
   const [axiosSecure] = useAxiosSecure();
 
-    const [refetch, myClasses] = useClasses();
+    const [refetch, allClasses] = useAllClasses();
+    
     const handleApproveStatus = (id) => {
       axiosSecure.patch(`/classes/approved/${id}`)
       .then(response => {
@@ -25,7 +26,7 @@ const MangeClasses = () => {
     return (
         <div>
            <div className="flex gap-3 justify-center mt-5 items-center font-semibold uppercase text-2xl">
-        <h1>Total Enrolled Students: {myClasses?.length}</h1>
+        <h1>Total Enrolled Students: {allClasses?.length}</h1>
       </div>
 
       <div className="overflow-x-auto mt-5 my-10">
@@ -45,7 +46,7 @@ const MangeClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {myClasses?.map((myClass, index) => {
+            {allClasses?.map((myClass, index) => {
               return (
                 <tr key={myClass._id}>
                   <td>{index + 1}</td>

@@ -5,8 +5,7 @@ import useInstructor from "../../../Hooks/useInstructor";
 const Sidebar = () => {
 const [, , isAdmin] = useAdmin();
 const [, , isInstructor] = useInstructor();
-
-console.log(isAdmin);
+console.log(isInstructor)
   return (
     <div className="drawer-side">
       <label htmlFor="my-drawer-3" className="drawer-overlay"></label>

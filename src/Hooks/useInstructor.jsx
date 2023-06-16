@@ -12,7 +12,7 @@ const useInstructor = () => {
         queryFn:  async () => {
             const response =  await axiosSecure(`/users/instructor/${user?.email}`);
             
-            return response.data.admin;
+            return response.data.instructor;
             
         },
   

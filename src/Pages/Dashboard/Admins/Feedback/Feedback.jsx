@@ -7,7 +7,7 @@ const Feedback = () => {
 
     const handleFeedback = async (e) => {
         e.preventDefault();
-        const id = feedbackClass._id;
+        const id = feedbackClass.data._id;
         const adminFeedback = e.target.feedback.value;
         const response = await axiosSecure.patch(`/instructor/feedbackClass/${id}`, {
            adminFeedback
