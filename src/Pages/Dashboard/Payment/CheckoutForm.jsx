@@ -5,7 +5,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Providers/AuthProviders";
 
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ price, mySelectedClass }) => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const stripe = useStripe();
@@ -82,6 +82,37 @@ const CheckoutForm = ({ price }) => {
       // save payment information to the server
      
   }
+  
+  if (paymentIntent?.status === 'succeeded') {
+      setTransactionId(paymentIntent.id);
+      // save payment information to the server
+      const className = mySelectedClass.name;
+      const id = mySelectedClass._id;
+      const seats = mySelectedClass.seats;
+      const classId = mySelectedClass.classId;
+
+      const paymentInfo = {
+        name: user?.displayName,
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price,
+        date: new Date(),
+        className,
+        classId,
+        id,
+        seats
+
+    }
+
+    axiosSecure.post('/payment-info', paymentInfo)
+        .then(res => {
+            console.log(res.data)
+            // if (res.data.result.insertedId) {
+            //   console.log(res.data);
+            // }
+        })
+  }
+
 
 };
 

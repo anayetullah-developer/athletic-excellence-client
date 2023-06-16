@@ -3,11 +3,11 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 const ClassCard = ({ singleClass }) => {
   const [axiosSecure] = useAxiosSecure();
 
-  const {instructorName, name, photoURL, email, seats, price } = singleClass;
+  const {_id, instructorName, name, photoURL, email, seats, price } = singleClass;
  
   const handleSelect = async () => {
     const response = await axiosSecure.post("/student/selectedClass", {
-       instructorName, name, photoURL, email, seats, price 
+       classId: _id, instructorName, name, photoURL, email, seats, price 
     });
 
     console.log(response);
