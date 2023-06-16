@@ -8,9 +8,6 @@ const Dashboard = () => {
   const {loading} = useContext(AuthContext);
   return (
     <div>
-       {loading ? (
-        <p className="font-semibold">Loading</p>
-      ) : (
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
@@ -43,7 +40,6 @@ const Dashboard = () => {
         </div>
         <Sidebar />
       </div>
-      )}
     </div>
   );
 };

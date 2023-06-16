@@ -1,23 +1,47 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const DashboardNavbar = () => {
-  const { user, loading } = useContext(AuthContext);
+  const {logoutUser, user} = useContext(AuthContext)
+  const navigate = useNavigate();
+
+   const handleLogOut = () => {
+    logoutUser()
+            .then(() => {
+              // Sign-out successful.
+            })
+            .catch(() => {
+              // An error happened.
+            });
+
+          navigate('/dashboard')
+
+  }
+
   return (
     <div>
-      {loading ? (
-        <p className="text-3xl">Loading</p>
-      ) : (
         <div>
           <div className="navbar-end">
             <div className="flex gap-3">
-              <Link to="/login" className="btn md:mx-4">Login</Link>
+              {user ? (
+                <Link
+                  to="/login"
+                  className=" mx-4 btn md:btn-md sm: btn-sm"
+                  onClick={handleLogOut}
+                >
+                  Logout
+                </Link>
+              ) : (
+                <Link to="" className=" mx-4 btn md:btn-md sm: btn-sm">
+                  Login
+                </Link>
+              )}
               <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 };
