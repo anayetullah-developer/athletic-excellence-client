@@ -1,5 +1,5 @@
 
-# Italiano Deligioso
+# Atheletic Exlcellence
 
 ## Description
    * This website is about a summer camp school on sports. The site is created by the web languages including HTML, CSS, Bootstrap, JavaScript, React, and Express.js for the API.
