@@ -17,8 +17,6 @@ const useInstructor = () => {
         },
   
       })
-  
-      console.log(isInstructor)
       return [refetch, isInstructorLoading, isInstructor];
 };
 

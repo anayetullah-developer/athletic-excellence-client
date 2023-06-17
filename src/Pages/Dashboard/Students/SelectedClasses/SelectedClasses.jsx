@@ -30,7 +30,7 @@ const SelectedClasses = () => {
   return (
     <div>
       <div className="flex gap-3 justify-center mt-5 items-center font-semibold uppercase text-2xl">
-        <h1>Total Selected Students: {selectedClasses?.length}</h1>
+        <h1>Total Selected Classes: {selectedClasses?.length}</h1>
       </div>
 
       <div className="overflow-x-auto mt-5 my-10">

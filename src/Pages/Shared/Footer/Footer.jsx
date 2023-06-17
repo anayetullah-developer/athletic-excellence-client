@@ -39,7 +39,7 @@ const Footer = () => {
     <a className="link link-hover text-[#CDFF00]">+44 (0) 203 889 6236</a>
   </div>
 </footer> 
-<footer className="footer px-10 py-4 border-t bg-black border-base-300">
+<footer className="footer px-10 py-4 border-t bg-black border-base-300 text-white">
   <div className="items-center grid-flow-col">
     <p>All Rights reserved || 2023</p>
   </div> 

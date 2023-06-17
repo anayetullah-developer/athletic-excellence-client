@@ -11,7 +11,7 @@ const Main = () => {
   
   return (
     <div>
-        <div className= {isDarkTheme? "bg-[#1D232A] text-[#FBFBFE]" : "bg-white text-black"}>
+        <div className= {isDarkTheme? "bg-[#1D232A] text-[#FBFBFE]" : ""}>
           <Navbar />
           <Outlet />
           <Footer />

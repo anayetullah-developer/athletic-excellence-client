@@ -9,12 +9,12 @@ const AddClass = () => {
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    // reset();
+    reset();
     const response = await axiosSecure.post("/instructor/addClass", {
        ...data
     })

@@ -44,7 +44,7 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <a className="md:text-3xl font-extrabold uppercase">Athletic Excellence </a>
+          <a className={`md:text-3xl text[#CDFF00] font-extrabold uppercase ${isDarkTheme ? `text-white` : ``}`}>Athletic Excellence </a>
         </div>
         <div className="navbar-center hidden lg:flex md:justify-end">
           <ul className={`menu menu-horizontal  px-1 text-lg ${!isDarkTheme ? `text-black` : `text-[#CDFF00]`}`}>
@@ -57,9 +57,11 @@ const Navbar = () => {
             <li>
               <NavLink to="instructors">Instructors</NavLink>
             </li>
-            <li>
+            {
+              user ? <li>
               <NavLink to="dashboard">Dashboard</NavLink>
-            </li>
+            </li> : <></>
+            }
           </ul>
         </div>
 
@@ -78,12 +80,12 @@ const Navbar = () => {
             )}
           </div>
          {
-          user ?  <Link to="/login" className=" mx-4 btn md:btn-md sm: btn-sm" onClick={handleLogOut}>Logout</Link> :
+          user ? <> <Link to="/login" className=" mx-4 btn md:btn-md sm: btn-sm" onClick={handleLogOut}>Logout</Link><img className="w-12 rounded-full" src={user?.photoURL} alt="" /></> :
           <Link to="/login" className=" mx-4 btn md:btn-md sm: btn-sm">Login</Link> 
   
           
          }
-          <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
+          
         </div>
 
        

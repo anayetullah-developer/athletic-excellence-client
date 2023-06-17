@@ -17,8 +17,6 @@ const useAdmin = () => {
       },
 
     })
-
-    console.log(isAdmin)
     return [refetch, isAdminLoading, isAdmin];
     
 };
