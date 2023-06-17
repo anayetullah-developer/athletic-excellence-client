@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { ThemeContext } from "../../../Providers/ThemeProvider";
@@ -6,28 +6,50 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
-  const {toggleTheme, isDarkTheme} = useContext(ThemeContext);
+  const { toggleTheme, isDarkTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleLogOut = () => {
     logoutUser()
-            .then(() => {
-              // Sign-out successful.
-            })
-            .catch(() => {
-              // An error happened.
-            });
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch(() => {
+        // An error happened.
+      });
 
-          navigate('/')
+    navigate("/");
+  };
 
-  }
-  
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div>
       <div className={`navbar border-[#EE4672] border-b-2 pb-8`}>
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost lg:hidden"
+              onClick={toggleDropdown}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -43,11 +65,30 @@ const Navbar = () => {
                 />
               </svg>
             </label>
+            {isDropdownOpen && (
+              <div className="dropdown-menu">
+                {/* Dropdown menu content */}
+                <NavLink to="/" className="block">Home</NavLink>
+                <NavLink to="classes" className="block">Classes</NavLink>
+                <NavLink to="instructors" className="block">Instructors</NavLink>
+                {user && <NavLink to="dashboard" className="block">Dashboard</NavLink>}
+              </div>
+            )}
           </div>
-          <a className={`md:text-3xl text[#CDFF00] font-extrabold uppercase ${isDarkTheme ? `text-white` : ``}`}>Athletic Excellence </a>
+          <a
+            className={`md:text-3xl font-extrabold uppercase ${
+              isDarkTheme ? "text-white" : ""
+            }`}
+          >
+            Athletic Excellence
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex md:justify-end">
-          <ul className={`menu menu-horizontal  px-1 text-lg ${!isDarkTheme ? `text-black` : `text-[#CDFF00]`}`}>
+          <ul
+            className={`menu menu-horizontal px-1 text-lg ${
+              !isDarkTheme ? "text-black" : "text-[#CDFF00]"
+            }`}
+          >
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -57,14 +98,13 @@ const Navbar = () => {
             <li>
               <NavLink to="instructors">Instructors</NavLink>
             </li>
-            {
-              user ? <li>
-              <NavLink to="dashboard">Dashboard</NavLink>
-            </li> : <></>
-            }
+            {user && (
+              <li>
+                <NavLink to="dashboard">Dashboard</NavLink>
+              </li>
+            )}
           </ul>
         </div>
-
         <div className="navbar-end">
           <div className="flex gap-3">
             {isDarkTheme ? (
@@ -79,16 +119,27 @@ const Navbar = () => {
               />
             )}
           </div>
-         {
-          user ? <> <Link to="/login" className=" mx-4 btn md:btn-md sm: btn-sm" onClick={handleLogOut}>Logout</Link><img className="w-12 rounded-full" src={user?.photoURL} alt="" /></> :
-          <Link to="/login" className=" mx-4 btn md:btn-md sm: btn-sm">Login</Link> 
-  
-          
-         }
-          
+          {user ? (
+            <>
+              <Link
+                to="/login"
+                className="mx-4 btn md:btn-md sm:btn-sm"
+                onClick={handleLogOut}
+              >
+                Logout
+              </Link>
+              <img
+                className="w-12 rounded-full"
+                src={user?.photoURL}
+                alt=""
+              />
+            </>
+          ) : (
+            <Link to="/login" className="mx-4 btn md:btn-md sm:btn-sm">
+              Login
+            </Link>
+          )}
         </div>
-
-       
       </div>
     </div>
   );

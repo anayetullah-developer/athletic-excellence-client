@@ -1,63 +1,69 @@
-import golf from "../../../assets/camps/Nike-Golf-Camps-UK.jpg"
-import tennis from "../../../assets/camps/tennis.jpg"
-import basketball from "../../../assets/camps/nike-basketball-camp.jpg"
-import football from "../../../assets/camps/Chelsea-Girls-Camp-UK.jpg"
+import golf from "../../../assets/camps/1.jpg";
+import tennis from "../../../assets/camps/2.jpg";
+import basketball from "../../../assets/camps/3.jpg";
+import football from "../../../assets/camps/4.jpg";
 
 const Venue = () => {
   return (
-    <div>
-        <h2 className="text-4xl font-extrabold text-center uppercase">2023 CAMP VENUES</h2>
-      <div className="md:grid grid-cols-4 my-5 gap-md-4 w-[90%] mx-auto">
-      <div className="card bg-base-100 shadow-xl">
+    <div className="mt-20">
+      <h2 className="text-4xl font-extrabold text-center uppercase my-10">
+        2023 CAMP VENUES
+      </h2>
+      <div className="md:grid grid-cols-4 gap-10 w-[90%] mx-auto">
+        <div className="card bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
-            <img
-              src={tennis}
-              alt="Shoes"
-              className="rounded-xl"
-            />
+            <img src={tennis} alt="Shoes" className="rounded-xl w-full" />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title text-3xl font-extrabold">TENNIS CAMP</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title text-3xl font-extrabold">
+              BRADFIELD COLLEGE READING
+            </h2>
+            <p>
+              Situated above the south coast, Lancing’s rural location and
+              campus layout suits younger players.
+            </p>
           </div>
         </div>
-      <div className="card  bg-base-100 shadow-xl">
+        <div className="card  bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
-            <img
-              src={football}
-              alt="Shoes"
-              className="rounded-xl"
-            />
+            <img src={football} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title text-3xl font-extrabold">FOOTBALL CAMP</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title text-3xl font-extrabold">
+              RADLEY COLLEGE OXFORD
+            </h2>
+            <p>
+              One of England’s most prestigious private schools, located south
+              of London.
+            </p>
           </div>
         </div>
         <div className="card bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
-            <img
-              src={golf}
-              alt="Shoes"
-              className="rounded-xl"
-            />
+            <img src={golf} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title text-3xl font-extrabold">GOLP CAMP</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title text-3xl font-extrabold">
+              CHARTERHOUSE SCHOOL SURREY
+            </h2>
+            <p>
+              Conveniently close to Oxford and London, Radley’s excellent
+              facilities make it an exciting new venue.{" "}
+            </p>
           </div>
         </div>
         <div className="card bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
-            <img
-              src={basketball}
-              alt="Shoes"
-              className="rounded-xl"
-            /> 
+            <img src={basketball} alt="Shoes" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title text-3xl font-extrabold">BASKETBALL CAMP</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title text-3xl font-extrabold">
+              LANCING COLLEGE BRIGHTON
+            </h2>
+            <p>
+              Leading private school in Berkshire with impressive sports
+              facilities, just an hour west of central London.
+            </p>
           </div>
         </div>
       </div>

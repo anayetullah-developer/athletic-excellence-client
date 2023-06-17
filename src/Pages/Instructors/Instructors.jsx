@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProviders";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import InstructorCard from "../Components/UIComponents/InstructorCard";
 
 const Instructors = () => {
-  const { loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
 
   const { data: instructors = [] } = useQuery({

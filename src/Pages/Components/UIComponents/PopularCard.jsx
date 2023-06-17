@@ -1,22 +1,20 @@
-
 import useAdmin from "../../../Hooks/useAdmin";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useInstructor from "../../../Hooks/useInstructor";
 
-
-const ClassCard = ({ singleClass }) => {
-  const [, , isAdmin] = useAdmin();
+const PopularCard = ({popularEach}) => {
+    const [, , isAdmin] = useAdmin();
   const [, , isInstructor] = useInstructor();
   const [axiosSecure] = useAxiosSecure();
 
   console.log(isAdmin, isInstructor)
 
   const { _id, instructorName, name, photoURL, email, seats, price } =
-    singleClass;
+    popularEach;
     let convertedSeat = parseFloat(seats)
 
   const handleSelect = async () => {
-    await axiosSecure.post("/student/selectedClass", {
+    const response = await axiosSecure.post("/student/selectedClass", {
       classId: _id,
       instructorName,
       name,
@@ -25,10 +23,12 @@ const ClassCard = ({ singleClass }) => {
       seats,
       price,
     });
+
+    console.log(response);
   };
 
-  return (
-    <div>
+    return (
+        <div>
       <div
         className={`max-w-sm mx-auto shadow-lg rounded-lg overflow-hidden ${
           convertedSeat < 1 ? `bg-red-300 text-white` : `text-gray-600`
@@ -58,7 +58,7 @@ const ClassCard = ({ singleClass }) => {
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default ClassCard;
+export default PopularCard;

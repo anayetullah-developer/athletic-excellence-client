@@ -76,7 +76,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
               path: "student/payment/:id",
               element: <Payment/>,
               loader: ({ params }) =>
-                fetch(`https://summer-camp-server-teal.vercel.app/student/payment/${params.id}`),
+                fetch(`http://localhost:5000/student/payment/${params.id}`),
             },
             
             {
@@ -92,7 +92,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
               path: "instructor/myClasses/:id",
               element: <InstructorRoute><UpdateClass /></InstructorRoute>,
               loader: ({ params }) =>
-              fetch(`https://summer-camp-server-teal.vercel.app/instructor/myClasses/${params.id}`),
+              fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
             },
       
             {
@@ -107,7 +107,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
               path: "admin/manage-users/feedback/:id",
               element: <AdminRoute><Feedback /></AdminRoute>,
               loader: ({ params }) =>
-                fetch(`https://summer-camp-server-teal.vercel.app/instructor/myClasses/${params.id}`),
+                fetch(`http://localhost:5000/instructor/myClasses/${params.id}`),
             },
           ],
         },
